@@ -1,0 +1,179 @@
+<!doctype html> 
+<html lang="en"> 
+<head> 
+    <meta charset="UTF-8" />
+    <title>MyFirstPhaser3Game</title>
+    <script src="//cdn.jsdelivr.net/npm/phaser@3.11.0/dist/phaser.js"></script>
+    <style type="text/css">
+        body {
+            margin: 0;
+        }
+    </style>
+</head>
+
+<body>
+
+    <script type="text/javascript">
+
+        const sceneConfigA = {
+            key: 'sceneA',
+            create: createA,
+            pack: {
+                files: [
+                    { type: 'image', key: 'logoA', url: 'assets/background1.png' }
+                ]
+            }
+        };
+        
+        const sceneConfigB = {
+            key: 'sceneB',
+            create: createB,
+            pack: {
+                files: [
+                    { type: 'image', key: 'logoB', url: 'assets/background2.png' }
+                ]
+            }
+        };
+
+        const sceneConfigC = {
+            key: 'sceneC',
+            create: createC,
+            pack: {
+                files: [
+                    { type: 'image', key: 'logoC', url: 'assets/background3.png' }
+                ]
+            }
+        };
+        
+        const sceneConfigD = {
+            key: 'sceneD',
+            create: createD,
+            pack: {
+                files: [
+                    { type: 'image', key: 'logoD', url: 'assets/background4.png' }
+                ]
+            }
+        };
+
+        const sceneConfigE = {
+            key: 'sceneE',
+            create: createE,
+            pack: {
+                files: [
+                    { type: 'image', key: 'logoE', url: 'assets/background5.jpg' }
+                ]
+            }
+        };
+
+        function createA ()
+        {
+            this.add.image(400, 300, 'logoA');
+            
+            // Add a colored background behind the text
+            const textBackground = this.add.graphics();
+            textBackground.fillStyle(0x000000, 0.5); // Black color with 50% transparency
+            textBackground.fillRect(300, 20, 200, 40); // Position and size of the background rectangle
+
+            // Add text on top of the background
+            const text = this.add.text(400, 40, 'Scene A', { fontSize: '32px', fill: '#ffffff' }).setOrigin(0.5);
+        
+            this.input.on('pointerdown', () =>
+            {
+                fadeAndSwitchScene.call(this, 'sceneB');
+            });
+        }
+        
+        function createB ()
+        {
+            this.add.image(400, 300, 'logoB');
+
+            // Add a colored background behind the text
+            const textBackground = this.add.graphics();
+            textBackground.fillStyle(0x000000, 0.5); // Black color with 50% transparency
+            textBackground.fillRect(300, 20, 200, 40); // Position and size of the background rectangle
+
+            // Add text on top of the background
+            const text = this.add.text(400, 40, 'Scene B', { fontSize: '32px', fill: '#ffffff' }).setOrigin(0.5);
+        
+            this.input.on('pointerdown', () =>
+            {
+                fadeAndSwitchScene.call(this, 'sceneC');
+            });
+        }
+
+        function createC ()
+        {
+            this.add.image(400, 300, 'logoC');
+
+            // Add a colored background behind the text
+            const textBackground = this.add.graphics();
+            textBackground.fillStyle(0x000000, 0.5); // Black color with 50% transparency
+            textBackground.fillRect(300, 20, 200, 40); // Position and size of the background rectangle
+
+            // Add text on top of the background
+            const text = this.add.text(400, 40, 'Scene C', { fontSize: '32px', fill: '#ffffff' }).setOrigin(0.5);
+        
+            this.input.on('pointerdown', () =>
+            {
+                fadeAndSwitchScene.call(this, 'sceneD');
+            });
+        }
+
+        function createD ()
+        {
+            this.add.image(400, 300, 'logoD');
+
+            // Add a colored background behind the text
+            const textBackground = this.add.graphics();
+            textBackground.fillStyle(0x000000, 0.5); // Black color with 50% transparency
+            textBackground.fillRect(300, 20, 200, 40); // Position and size of the background rectangle
+
+            // Add text on top of the background
+            const text = this.add.text(400, 40, 'Scene D', { fontSize: '32px', fill: '#ffffff' }).setOrigin(0.5);
+        
+            this.input.on('pointerdown', () =>
+            {
+                fadeAndSwitchScene.call(this, 'sceneE');
+            });
+        }
+
+        function createE ()
+        {
+            this.add.image(400, 300, 'logoE');
+
+            // Add a colored background behind the text
+            const textBackground = this.add.graphics();
+            textBackground.fillStyle(0x000000, 0.5); // Black color with 50% transparency
+            textBackground.fillRect(300, 20, 200, 40); // Position and size of the background rectangle
+
+            // Add text on top of the background
+            const text = this.add.text(400, 40, 'Scene E', { fontSize: '32px', fill: '#ffffff' }).setOrigin(0.5);
+        
+            this.input.on('pointerdown', () =>
+            {
+                fadeAndSwitchScene.call(this, 'sceneA');
+            });
+        }
+
+        function fadeAndSwitchScene(sceneKey) {
+            this.cameras.main.fadeOut(500); // Fade out over 500 milliseconds
+            this.cameras.main.once('camerafadeoutcomplete', () => {
+                this.scene.switch(sceneKey);
+                this.cameras.main.fadeIn(500); // Optional: Fade in after switching scenes
+            });
+        }
+        
+        const gameConfig = {
+            type: Phaser.CANVAS,
+            parent: 'phaser-example',
+            width: 800,
+            height: 600,
+            scene: [ sceneConfigA, sceneConfigB, sceneConfigC, sceneConfigD, sceneConfigE ]
+        };
+        
+        const game = new Phaser.Game(gameConfig);
+
+    </script>
+
+</body>
+</html>
